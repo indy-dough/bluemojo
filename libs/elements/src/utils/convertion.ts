@@ -1,6 +1,6 @@
-import { IColor } from '../types';
+import { IColor, IRgb } from '../types';
 
-import { hslToHsb, rgbToHsl, IRgb } from '@bluemojo/utils';
+import { hslToHsb, rgbToHsl } from '@bluemojo/utils';
 
 function hexaStringToRgbA(hexa: string): { rgb: IRgb; a: number } {
   const r = parseInt('0x' + hexa[0] + hexa[1], 16);
