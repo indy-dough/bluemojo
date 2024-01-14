@@ -1,5 +1,16 @@
 {
   "name": "@bluemojo/utils",
+  "description": "Utils for color conversion.",
+  "keywords": [
+    "color utils",
+    "rgb",
+    "hsl",
+    "hsb",
+    "hsv"
+  ],
+  "homepage": "https://github.com/indy-dough/bluemojo/tree/main/libs/utils",
+  "author": "Andrei Shevel <sendtoshevvy@gmail.com>",
+  "license": "MIT",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",

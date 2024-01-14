@@ -1,5 +1,16 @@
 {
   "name": "@bluemojo/elements",
+  "description": "Basic color picker components for React.",
+  "keywords": [
+    "react",
+    "color picker components",
+    "react components",
+    "color-picker-components",
+    "react-components"
+  ],
+  "homepage": "https://github.com/indy-dough/bluemojo/tree/main/libs/elements",
+  "author": "Andrei Shevel <sendtoshevvy@gmail.com>",
+  "license": "MIT",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",

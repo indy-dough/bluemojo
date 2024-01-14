@@ -1,5 +1,21 @@
 {
   "name": "@bluemojo/colorful",
+  "description": "Colorful color picker component for React.",
+  "keywords": [
+    "react",
+    "color picker",
+    "colorful color picker",
+    "react-component",
+    "colorpicker",
+    "hex",
+    "color",
+    "color-picker",
+    "react-color",
+    "react-colorful"
+  ],
+  "homepage": "https://github.com/indy-dough/bluemojo/tree/main/libs/colorful",
+  "author": "Andrei Shevel <sendtoshevvy@gmail.com>",
+  "license": "MIT",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -8,5 +24,8 @@
       "import": "./index.mjs",
       "require": "./index.js"
     }
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
   }
 }

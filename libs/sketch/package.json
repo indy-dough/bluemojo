@@ -1,5 +1,21 @@
 {
   "name": "@bluemojo/sketch",
+  "description": "Sketch color picker component for React.",
+  "keywords": [
+    "react",
+    "color picker",
+    "sketch color picker",
+    "react-component",
+    "colorpicker",
+    "hex",
+    "color",
+    "color-picker",
+    "react-color",
+    "react-sketch"
+  ],
+  "homepage": "https://github.com/indy-dough/bluemojo/tree/main/libs/sketch",
+  "author": "Andrei Shevel <sendtoshevvy@gmail.com>",
+  "license": "MIT",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",

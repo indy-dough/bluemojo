@@ -14,7 +14,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/libs/colorful"
+        "outputPath": "dist/libs/colorful",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {

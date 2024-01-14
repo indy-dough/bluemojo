@@ -14,7 +14,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/libs/sketch"
+        "outputPath": "dist/libs/sketch",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {
