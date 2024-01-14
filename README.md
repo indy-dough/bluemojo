@@ -1,4 +1,4 @@
-# [Bluemojo](https://react.dev/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/indy-dough/bluemojo/blob/main/LICENSE)
+# Bluemojo &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/indy-dough/bluemojo/blob/main/LICENSE)
 
 Bluemojo is a set of JavaScript libraries for using color pickers or building your own.
 
