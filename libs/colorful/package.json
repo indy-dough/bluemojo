@@ -13,7 +13,10 @@
     "react-color",
     "react-colorful"
   ],
-  "homepage": "https://github.com/indy-dough/bluemojo/tree/main/libs/colorful",
+  "bugs": {
+    "url": "https://github.com/indy-dough/bluemojo/issues"
+  },
+  "homepage": "https://indy-dough.github.io/bluemojo/",
   "author": "Andrei Shevel <sendtoshevvy@gmail.com>",
   "license": "MIT",
   "version": "0.0.1",

@@ -4,6 +4,10 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
+  "bugs": {
+    "url": "https://github.com/indy-dough/bluemojo/issues"
+  },
+  "homepage": "https://indy-dough.github.io/bluemojo/",
   "dependencies": {
     "@swc/helpers": "~0.5.2"
   },
