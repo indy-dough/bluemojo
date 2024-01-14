@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@bluemojo/colorful": ["libs/colorful/src/index.ts"],
+      "@bluemojo/elements": ["libs/elements/src/index.ts"],
+      "@bluemojo/sketch": ["libs/sketch/src/index.ts"],
+      "@bluemojo/utils": ["libs/utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

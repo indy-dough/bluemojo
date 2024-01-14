@@ -10,6 +10,8 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
     "@nx/eslint": "17.2.8",
     "@nx/eslint-plugin": "17.2.8",
     "@nx/js": "17.2.8",
@@ -39,6 +41,7 @@
     "prettier": "^2.6.2",
     "typescript": "~5.2.2",
     "vite": "^5.0.0",
+    "vite-plugin-dts": "~2.3.0",
     "vitest": "~0.34.6"
   }
 }
