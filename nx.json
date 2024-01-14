@@ -41,11 +41,6 @@
       },
       "component": {
         "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint",
-        "unitTestRunner": "none"
       }
     }
   }

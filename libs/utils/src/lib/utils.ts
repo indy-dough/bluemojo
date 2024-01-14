@@ -63,8 +63,8 @@ export function rgbToHsl({ r, g, b }: IRgb): IHsl {
 
   l = (cMax + cMin) / 2;
   s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-  s = +s.toFixed(1);
-  l = +l.toFixed(1);
+  s = +s.toFixed(2);
+  l = +l.toFixed(2);
 
   return { h, s, l };
 }
