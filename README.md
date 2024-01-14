@@ -10,6 +10,15 @@ Bluemojo is a set of JavaScript libraries for using color pickers or building yo
 - TypeScript support
 - No dependencies
 
+## Installation
+
+```sh
+npm install @bluemojo/colorful
+npm install @bluemojo/sketch
+npm install @bluemojo/elements
+npm install @bluemojo/utils
+```
+
 ## Examples
 
 ```jsx
