@@ -1,18 +1,18 @@
 {
-  "name": "@bluemojo/colorful",
-  "version": "0.0.4",
-  "description": "Colorful color picker component for React.",
+  "name": "@bluemojo/chrome",
+  "version": "0.0.1",
+  "description": "Chrome color picker component for React.",
   "keywords": [
     "react",
     "color picker",
-    "colorful color picker",
+    "chrome color picker",
     "react-component",
     "colorpicker",
     "hex",
     "color",
     "color-picker",
     "react-color",
-    "react-colorful"
+    "react-chrome"
   ],
   "bugs": {
     "url": "https://github.com/indy-dough/bluemojo/issues"

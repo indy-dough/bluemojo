@@ -33,8 +33,11 @@ export function colorToHexString(color: IColor) {
   return `${rgbToHexString(color.rgb)}`.toUpperCase();
 }
 
-export function colorToHexaString(color: IColor) {
-  return `#${rgbToHexString(color.rgb)}${alphaToHexString(
-    color.a
-  )}`.toUpperCase();
+export function colorToHexaString(
+  color: IColor,
+  options?: { hideHash?: boolean; hideAlpha?: boolean }
+) {
+  return `${options?.hideHash ? '' : '#'}${rgbToHexString(color.rgb)}${
+    options?.hideAlpha ? '' : alphaToHexString(color.a)
+  }`.toUpperCase();
 }

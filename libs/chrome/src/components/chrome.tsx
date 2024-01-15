@@ -1,8 +1,8 @@
 import { Bluemojo } from '@bluemojo/elements';
-import { ColorfulStyles } from './colorful.element';
+import { ChromeElement } from './chrome.element';
 import { HTMLAttributes } from 'react';
 
-type IColorfulProps = Omit<
+type IChromeProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   'value' | 'onChange'
 > & {
@@ -11,10 +11,10 @@ type IColorfulProps = Omit<
   onChange?: (value: string) => void;
 };
 
-export function Colorful({ value, onChange, ...props }: IColorfulProps) {
+export function Chrome({ value, onChange, ...props }: IChromeProps) {
   return (
     <Bluemojo value={value} onChange={onChange}>
-      <ColorfulStyles {...props} />
+      <ChromeElement {...props} />
     </Bluemojo>
   );
 }

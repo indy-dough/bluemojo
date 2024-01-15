@@ -7,9 +7,10 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/libs/utils',
+  cacheDir: '../../node_modules/.vite/libs/chrome',
 
   plugins: [
+    react(),
     nxViteTsPaths(),
     dts({
       entryRoot: 'src',
@@ -27,7 +28,7 @@ export default defineConfig({
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
     target: 'es6',
-    outDir: '../../dist/libs/utils',
+    outDir: '../../dist/libs/chrome',
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -35,7 +36,7 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',
-      name: 'utils',
+      name: 'chrome',
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
@@ -43,22 +44,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: [],
-    },
-  },
-
-  test: {
-    globals: true,
-    cache: {
-      dir: '../../node_modules/.vitest',
-    },
-    environment: 'node',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-
-    reporters: ['default'],
-    coverage: {
-      reportsDirectory: '../../coverage/libs/utils',
-      provider: 'v8',
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
   },
 });

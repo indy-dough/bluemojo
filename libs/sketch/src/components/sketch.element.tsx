@@ -35,9 +35,15 @@ const colors = [
   '#FFFFFF',
 ];
 
-type ISketchElementProps = HTMLAttributes<HTMLDivElement>;
+type ISketchElementProps = HTMLAttributes<HTMLDivElement> & {
+  hideAlpha?: boolean;
+};
 
-export function SketchStyles({ style, ...props }: ISketchElementProps) {
+export function SketchStyles({
+  style,
+  hideAlpha,
+  ...props
+}: ISketchElementProps) {
   const { color } = useContext(ColorContext);
 
   const rgba = `rgba(${color.rgb.r},${color.rgb.g},${color.rgb.b},${color.a})`;
@@ -46,13 +52,14 @@ export function SketchStyles({ style, ...props }: ISketchElementProps) {
     width: '100%',
     fontSize: 11,
     boxSizing: 'border-box',
-    padding: '4px 10% 3px',
+    padding: '4px 3px',
     border: 'none',
     boxShadow: 'rgb(204, 204, 204) 0px 0px 0px 1px inset',
   };
   const labelStyle: CSSProperties = {
     textAlign: 'center',
     fontSize: 11,
+    lineHeight: '12px',
     color: '#222222',
     paddingTop: 3,
     paddingBottom: 4,
@@ -83,55 +90,62 @@ export function SketchStyles({ style, ...props }: ISketchElementProps) {
         <div
           style={{
             marginTop: 4,
-            display: 'grid',
+            display: 'flex',
+            alignItems: 'center',
             gap: 4,
-            gridTemplateColumns: '1fr 24px',
           }}
         >
-          <HueSlider
-            elements={{
-              container: {
-                style: {
-                  height: 10,
-                  background: DEFAULT_HUE_BACKGROUND,
-                  padding: '0 3px',
+          <div style={{ flex: '1 1 100%' }}>
+            <HueSlider
+              elements={{
+                container: {
+                  style: {
+                    height: 10,
+                    background: DEFAULT_HUE_BACKGROUND,
+                    padding: '0 3px',
+                  },
                 },
-              },
-              slider: {
-                style: {
-                  height: 8,
-                  width: 4,
-                  borderRadius: 1,
-                  backgroundColor: '#fff',
-                  boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px',
+                slider: {
+                  style: {
+                    height: 8,
+                    width: 4,
+                    borderRadius: 1,
+                    backgroundColor: '#fff',
+                    boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px',
+                  },
                 },
-              },
-            }}
-          />
-          <AlphaSlider
-            elements={{
-              container: {
-                style: {
-                  gridColumn: 1,
-                  height: 10,
-                  background: `linear-gradient(to right, transparent 0%, hsl(${color.hsl.h} 100% 50%) 100%), url('${DEFAULT_SQUARED_BACKGROUND}') left center`,
-                  padding: '0 3px',
-                },
-              },
-              slider: {
-                style: {
-                  height: 8,
-                  width: 4,
-                  borderRadius: 1,
-                  backgroundColor: '#fff',
-                  boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px',
-                },
-              },
-            }}
-          />
+              }}
+            />
+            {!hideAlpha && (
+              <AlphaSlider
+                elements={{
+                  container: {
+                    style: {
+                      gridColumn: 1,
+                      height: 10,
+                      background: `linear-gradient(to right, transparent 0%, hsl(${color.hsl.h} 100% 50%) 100%), url('${DEFAULT_SQUARED_BACKGROUND}') left center`,
+                      padding: '0 3px',
+                      marginTop: 4,
+                    },
+                  },
+                  slider: {
+                    style: {
+                      height: 8,
+                      width: 4,
+                      borderRadius: 1,
+                      backgroundColor: '#fff',
+                      boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px',
+                    },
+                  },
+                }}
+              />
+            )}
+          </div>
           <div
             style={{
-              gridArea: '1 / 2 / 3',
+              flexShrink: 0,
+              width: hideAlpha ? 12 : 24,
+              height: hideAlpha ? 12 : 24,
               borderRadius: 2,
               boxShadow:
                 'rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.25) 0px 0px 4px inset',
@@ -142,13 +156,15 @@ export function SketchStyles({ style, ...props }: ISketchElementProps) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr',
+            gridTemplateColumns: hideAlpha
+              ? '2fr 1fr 1fr 1fr'
+              : '2fr 1fr 1fr 1fr 1fr',
             gap: 8,
             marginTop: 8,
           }}
         >
           <div>
-            <HexInput style={inputStyle} />
+            <HexInput style={inputStyle} hideHash hideAlpha />
             <div style={labelStyle}>Hex</div>
           </div>
           <div>
@@ -163,10 +179,12 @@ export function SketchStyles({ style, ...props }: ISketchElementProps) {
             <BlueInput style={inputStyle} />
             <div style={labelStyle}>B</div>
           </div>
-          <div>
-            <AlphaInput style={inputStyle} />
-            <div style={labelStyle}>A</div>
-          </div>
+          {!hideAlpha && (
+            <div>
+              <AlphaInput style={inputStyle} />
+              <div style={labelStyle}>A</div>
+            </div>
+          )}
         </div>
       </div>
       <div

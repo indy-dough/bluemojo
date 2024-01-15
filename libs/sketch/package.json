@@ -1,6 +1,6 @@
 {
   "name": "@bluemojo/sketch",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Sketch color picker component for React.",
   "keywords": [
     "react",

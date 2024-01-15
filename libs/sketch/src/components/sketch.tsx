@@ -2,7 +2,11 @@ import { Bluemojo } from '@bluemojo/elements';
 import { SketchStyles } from './sketch.element';
 import { HTMLAttributes } from 'react';
 
-type ISketchProps = HTMLAttributes<HTMLDivElement> & {
+type ISketchProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'value' | 'onChange'
+> & {
+  hideAlpha?: boolean;
   value?: string;
   onChange?: (value: string) => void;
 };

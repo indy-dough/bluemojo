@@ -1,5 +1,6 @@
 {
   "name": "@bluemojo/utils",
+  "version": "0.0.2",
   "description": "Utils for color conversion.",
   "keywords": [
     "color utils",
@@ -14,7 +15,6 @@
   "homepage": "https://indy-dough.github.io/bluemojo/",
   "author": "Andrei Shevel <sendtoshevvy@gmail.com>",
   "license": "MIT",
-  "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",
   "exports": {

@@ -11,9 +11,15 @@ import {
   DEFAULT_SQUARED_BACKGROUND,
 } from '@bluemojo/utils';
 
-type IColorfulElementProps = HTMLAttributes<HTMLDivElement>;
+type IColorfulElementProps = HTMLAttributes<HTMLDivElement> & {
+  hideAlpha?: boolean;
+};
 
-export function ColorfulStyles({ style, ...props }: IColorfulElementProps) {
+export function ColorfulStyles({
+  style,
+  hideAlpha,
+  ...props
+}: IColorfulElementProps) {
   const { color } = useContext(ColorContext);
 
   const slider = (background: string): { style: CSSProperties } => ({
@@ -52,6 +58,7 @@ export function ColorfulStyles({ style, ...props }: IColorfulElementProps) {
             style: {
               height: 24,
               background: DEFAULT_HUE_BACKGROUND,
+              borderRadius: hideAlpha ? '0 0 8px 8px' : undefined,
             },
           },
           sliderBox: {
@@ -60,24 +67,26 @@ export function ColorfulStyles({ style, ...props }: IColorfulElementProps) {
           slider: slider(`hsl(${color.hsl.h} 100% 50%)`),
         }}
       />
-      <AlphaSlider
-        elements={{
-          container: {
-            style: {
-              gridColumn: 1,
-              height: 24,
-              background: `linear-gradient(to right, transparent 0%, hsl(${color.hsl.h} 100% 50%) 100%), url('${DEFAULT_SQUARED_BACKGROUND}')`,
-              borderRadius: '0 0 8px 8px',
+      {!hideAlpha && (
+        <AlphaSlider
+          elements={{
+            container: {
+              style: {
+                gridColumn: 1,
+                height: 24,
+                background: `linear-gradient(to right, transparent 0%, hsl(${color.hsl.h} 100% 50%) 100%), url('${DEFAULT_SQUARED_BACKGROUND}')`,
+                borderRadius: '0 0 8px 8px',
+              },
             },
-          },
-          sliderBox: {
-            style: { zIndex: 1 },
-          },
-          slider: slider(
-            `linear-gradient(to right, hsla(${color.hsl.h}, 100%, 50%, ${color.a}) 0%, hsla(${color.hsl.h}, 100%, 50%, ${color.a}) 100%), url('${DEFAULT_SQUARED_BACKGROUND}'), white`
-          ),
-        }}
-      />
+            sliderBox: {
+              style: { zIndex: 1 },
+            },
+            slider: slider(
+              `linear-gradient(to right, hsla(${color.hsl.h}, 100%, 50%, ${color.a}) 0%, hsla(${color.hsl.h}, 100%, 50%, ${color.a}) 100%), url('${DEFAULT_SQUARED_BACKGROUND}'), white`
+            ),
+          }}
+        />
+      )}
     </div>
   );
 }
