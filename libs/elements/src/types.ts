@@ -27,6 +27,8 @@ export type IColor = {
 
 export type IElement = string | { className?: string; style?: CSSProperties };
 
+export type INormalizedElement = { className?: string; style?: CSSProperties };
+
 export type ISliderElements = {
   container?: IElement;
   sliderBox?: IElement;

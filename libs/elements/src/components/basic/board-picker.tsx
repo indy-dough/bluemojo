@@ -3,6 +3,7 @@ import {
   TouchEventHandler,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -11,10 +12,7 @@ import { ISliderElements } from '../../types';
 
 import useEvent from '../../hooks/use-event';
 
-import {
-  getClassNameFromElement,
-  getStyleFromElement,
-} from '../../utils/style';
+import { getElementProperties, mergeElement } from '../../utils/style';
 
 type IBoardPickerProps = {
   elements?: ISliderElements;
@@ -87,34 +85,41 @@ export function BoardPicker({ elements, value, onChange }: IBoardPickerProps) {
     };
   }, [down]);
 
+  const containerElement = useMemo(
+    () =>
+      mergeElement(elements?.container, {
+        style: {
+          position: 'relative',
+        },
+      }),
+    [elements?.container]
+  );
+
+  const sliderBoxElement = useMemo(
+    () =>
+      mergeElement(elements?.sliderBox, {
+        style: {
+          position: 'absolute',
+          bottom: `${(down ? innerValue.bottom : value.bottom) * 100}%`,
+          left: `${(down ? innerValue.left : value.left) * 100}%`,
+          transform: 'translateX(-50%) translateY(50%)',
+        },
+      }),
+    [elements?.sliderBox, down, innerValue, value]
+  );
+
   return (
     <div
       ref={container}
-      className={getClassNameFromElement(elements?.container)}
-      style={{
-        position: 'relative',
-        ...getStyleFromElement(elements?.container),
-      }}
+      {...getElementProperties(containerElement)}
       onMouseDown={onMouseDown}
       onTouchMove={onTouch}
       onTouchStart={onTouch}
     >
       <div style={{ position: 'relative', height: '100%' }}>
         <div style={{ position: 'absolute', inset: 0 }}>
-          <div
-            style={{
-              position: 'absolute',
-              bottom: `${(down ? innerValue.bottom : value.bottom) * 100}%`,
-              left: `${(down ? innerValue.left : value.left) * 100}%`,
-              transform: 'translateX(-50%) translateY(50%)',
-              ...getStyleFromElement(elements?.sliderBox),
-            }}
-            className={getClassNameFromElement(elements?.sliderBox)}
-          >
-            <div
-              style={getStyleFromElement(elements?.slider)}
-              className={getClassNameFromElement(elements?.slider)}
-            />
+          <div {...getElementProperties(sliderBoxElement)}>
+            <div {...getElementProperties(elements?.slider)} />
           </div>
         </div>
       </div>

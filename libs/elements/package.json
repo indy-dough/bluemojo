@@ -1,6 +1,6 @@
 {
   "name": "@bluemojo/elements",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Basic color picker components for React.",
   "keywords": [
     "react",
