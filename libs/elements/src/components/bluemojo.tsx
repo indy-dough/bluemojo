@@ -1,21 +1,31 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { IColor } from '../types';
 
 import { ColorContext } from './color-context';
 import { colorToHexaString } from '../utils/convertion';
 import { normalizeHexa } from '../utils/normalize';
-import { DEFAULT_COLOR, DEFAULT_HEX_COLOR } from '../utils/colors';
+import { DEFAULT_COLOR } from '../utils/colors';
 
 export type IBluemojoProps = {
   children: ReactNode;
+  defaultValue?: string;
   value?: string;
   onChange?: (value: string) => void;
 };
 
-export function Bluemojo({ children, value, onChange }: IBluemojoProps) {
-  const [innerColor, setInnerColor] = useState<IColor>(DEFAULT_COLOR);
-  const [innerValue, setInnerValue] = useState(DEFAULT_HEX_COLOR);
+export function Bluemojo({
+  children,
+  defaultValue,
+  value,
+  onChange,
+}: IBluemojoProps) {
+  const defaultInnerColor = useMemo(
+    () => (defaultValue ? normalizeHexa(defaultValue) : DEFAULT_COLOR),
+    []
+  );
+  const [innerColor, setInnerColor] = useState<IColor>(defaultInnerColor);
+  const [innerValue, setInnerValue] = useState(value);
 
   useEffect(() => {
     if (value !== innerValue) {

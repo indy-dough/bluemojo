@@ -15,3 +15,5 @@ export * from './components/advanced/hue-slider';
 export * from './components/advanced/red-input';
 export * from './components/advanced/sb-picker';
 export * from './components/advanced/sl-picker';
+
+export * from './utils/style';

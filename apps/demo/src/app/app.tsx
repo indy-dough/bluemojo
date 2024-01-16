@@ -8,8 +8,11 @@ export function App() {
       style={{ display: 'flex', gap: 24, margin: 40, alignItems: 'flex-start' }}
     >
       <Sketch style={{ boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px' }} />
-      <Chrome style={{ boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px' }} />
-      <Colorful hideAlpha />
+      <Chrome
+        defaultValue={'#141414'}
+        style={{ boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px' }}
+      />
+      <Colorful />
     </div>
   );
 }

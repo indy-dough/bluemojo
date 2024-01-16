@@ -1,7 +1,5 @@
 import { IColor } from '../types';
 
-export const DEFAULT_HEX_COLOR = '#FFFFFF';
-
 export const DEFAULT_COLOR: IColor = {
   rgb: {
     r: 255,

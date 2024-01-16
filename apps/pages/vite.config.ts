@@ -27,6 +27,7 @@ export default defineConfig({
 
   build: {
     outDir: '../../docs',
+    emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
