@@ -13,8 +13,10 @@ Bluemojo is a set of JavaScript libraries for using color pickers or building yo
 ## Installation
 
 ```sh
-npm install @bluemojo/colorful
 npm install @bluemojo/sketch
+npm install @bluemojo/chrome
+npm install @bluemojo/colorful
+
 npm install @bluemojo/elements
 npm install @bluemojo/utils
 ```
