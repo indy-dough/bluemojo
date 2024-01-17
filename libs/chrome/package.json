@@ -1,6 +1,6 @@
 {
   "name": "@bluemojo/chrome",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Chrome color picker component for React.",
   "keywords": [
     "react",
