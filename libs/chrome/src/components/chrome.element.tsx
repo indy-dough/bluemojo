@@ -33,7 +33,18 @@ export function ChromeElement({
 }: IChromeStylesProps) {
   const { color } = useContext(ColorContext);
 
-  const rgb = `${color.rgb.r},${color.rgb.g},${color.rgb.b}`;
+  const localStyle = useMemo(() => {
+    const rgb = `${color.rgb.r},${color.rgb.g},${color.rgb.b}`;
+
+    return {
+      width: 220,
+      ...style,
+      '--rgba-color': `rgba(${rgb},${color.a})`,
+      '--rgb-color': `rgb(${rgb})`,
+      '--hsl-color': `hsl(${color.hsl.h} 100% 50%)`,
+      '--probe-size': hideAlpha ? '16px' : '32px',
+    } as CSSProperties;
+  }, [hideAlpha, color, style]);
 
   const SBPickerElements = useMemo(
     () => mergeElements(elements?.SBPicker, defaultElements.SBPicker),
@@ -45,11 +56,11 @@ export function ChromeElement({
   );
   const AlphaSliderElements = useMemo(
     () => mergeElements(elements?.AlphaSlider, defaultElements.AlphaSlider),
-    [elements?.HueSlider]
+    [elements?.AlphaSlider]
   );
   const HexInputElement = useMemo(
     () => mergeElement(elements?.HexInput, defaultElements.HexInput),
-    [elements?.HueSlider]
+    [elements?.HexInput]
   );
   const ProbeElement = useMemo(
     () => mergeElement(elements?.Probe, defaultElements.Probe),
@@ -57,19 +68,7 @@ export function ChromeElement({
   );
 
   return (
-    <div
-      {...props}
-      style={
-        {
-          width: 220,
-          ...style,
-          '--rgba-color': `rgba(${rgb},${color.a})`,
-          '--rgb-color': `rgb(${rgb})`,
-          '--hsl-color': `hsl(${color.hsl.h} 100% 50%)`,
-          '--probe-size': hideAlpha ? '16px' : '32px',
-        } as CSSProperties
-      }
-    >
+    <div {...props} style={localStyle}>
       <SBPicker elements={SBPickerElements} />
       <div style={{ padding: 10 }}>
         <div

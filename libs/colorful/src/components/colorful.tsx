@@ -1,12 +1,14 @@
-import { Bluemojo } from '@bluemojo/elements';
-import { ColorfulStyles } from './colorful.element';
 import { HTMLAttributes } from 'react';
+import { Bluemojo } from '@bluemojo/elements';
+import { ColorfulStyles, IColorfulElements } from './colorful.element';
 
 type IColorfulProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   'value' | 'onChange'
 > & {
   hideAlpha?: boolean;
+  defaultValue?: string;
+  elements?: IColorfulElements;
   value?: string;
   onChange?: (value: string) => void;
 };

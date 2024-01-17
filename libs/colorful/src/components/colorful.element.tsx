@@ -1,92 +1,65 @@
-import { CSSProperties, HTMLAttributes, useContext } from 'react';
+import { CSSProperties, HTMLAttributes, useContext, useMemo } from 'react';
 
 import {
   SBPicker,
   HueSlider,
   AlphaSlider,
   ColorContext,
+  mergeElements,
 } from '@bluemojo/elements';
-import {
-  DEFAULT_HUE_BACKGROUND,
-  DEFAULT_SQUARED_BACKGROUND,
-} from '@bluemojo/utils';
+import { defaultElements, ISliderElements } from './elements';
+
+export type IColorfulElements = {
+  SBPicker?: ISliderElements;
+  HueSlider?: ISliderElements;
+  AlphaSlider?: ISliderElements;
+};
 
 type IColorfulElementProps = HTMLAttributes<HTMLDivElement> & {
   hideAlpha?: boolean;
+  elements?: IColorfulElements;
 };
 
 export function ColorfulStyles({
   style,
   hideAlpha,
+  elements,
   ...props
 }: IColorfulElementProps) {
   const { color } = useContext(ColorContext);
 
-  const slider = (background: string): { style: CSSProperties } => ({
-    style: {
-      width: 28,
-      height: 28,
-      boxSizing: 'border-box',
-      borderRadius: '50%',
-      background,
-      border: '2px solid white',
-      boxShadow: '0 2px 4px rgba(0,0,0,.2)',
-    },
-  });
+  const localStyle = useMemo(() => {
+    const rgb = `${color.rgb.r},${color.rgb.g},${color.rgb.b}`;
+
+    return {
+      width: 200,
+      ...style,
+      '--rgba-color': `rgba(${rgb},${color.a})`,
+      '--rgb-color': `rgb(${rgb})`,
+      '--hsl-color': `hsl(${color.hsl.h} 100% 50%)`,
+      '--hsla-color': `hsl(${color.hsl.h}, 100%, 50%, ${color.a})`,
+      '--hue-slider-border-radius': hideAlpha ? '0 0 8px 8px' : undefined,
+    } as CSSProperties;
+  }, [hideAlpha, color, style]);
+
+  const SBPickerElements = useMemo(
+    () => mergeElements(elements?.SBPicker, defaultElements.SBPicker),
+    [elements?.SBPicker]
+  );
+  const HueSliderElements = useMemo(
+    () => mergeElements(elements?.HueSlider, defaultElements.HueSlider),
+    [elements?.HueSlider]
+  );
+  const AlphaSliderElements = useMemo(
+    () => mergeElements(elements?.AlphaSlider, defaultElements.AlphaSlider),
+    [elements?.AlphaSlider]
+  );
 
   return (
-    <div {...props} style={{ width: 200, ...style }}>
-      <SBPicker
-        elements={{
-          container: {
-            style: {
-              height: 152,
-              borderRadius: '8px 8px 0 0',
-              background: `linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0)), linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0)), hsl(${color.hsl.h} 100% 50%)`,
-              paddingBottom: 12,
-            },
-          },
-          sliderBox: {
-            style: { zIndex: 3 },
-          },
-          slider: slider(`rgb(${color.rgb.r},${color.rgb.g},${color.rgb.b})`),
-        }}
-      />
-      <HueSlider
-        elements={{
-          container: {
-            style: {
-              height: 24,
-              background: DEFAULT_HUE_BACKGROUND,
-              borderRadius: hideAlpha ? '0 0 8px 8px' : undefined,
-            },
-          },
-          sliderBox: {
-            style: { zIndex: 2 },
-          },
-          slider: slider(`hsl(${color.hsl.h} 100% 50%)`),
-        }}
-      />
-      {!hideAlpha && (
-        <AlphaSlider
-          elements={{
-            container: {
-              style: {
-                gridColumn: 1,
-                height: 24,
-                background: `linear-gradient(to right, transparent 0%, hsl(${color.hsl.h} 100% 50%) 100%), url('${DEFAULT_SQUARED_BACKGROUND}')`,
-                borderRadius: '0 0 8px 8px',
-              },
-            },
-            sliderBox: {
-              style: { zIndex: 1 },
-            },
-            slider: slider(
-              `linear-gradient(to right, hsla(${color.hsl.h}, 100%, 50%, ${color.a}) 0%, hsla(${color.hsl.h}, 100%, 50%, ${color.a}) 100%), url('${DEFAULT_SQUARED_BACKGROUND}'), white`
-            ),
-          }}
-        />
-      )}
+    <div {...props} style={localStyle}>
+      <SBPicker elements={SBPickerElements} />
+      <HueSlider elements={HueSliderElements} />
+      {!hideAlpha && <AlphaSlider elements={AlphaSliderElements} />}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-# Bluemojo &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/indy-dough/bluemojo/blob/main/LICENSE)
+# [Bluemojo](https://indy-dough.github.io/bluemojo/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/indy-dough/bluemojo/blob/main/LICENSE)
 
 Bluemojo is a set of JavaScript libraries for using color pickers or building your own.
 
@@ -31,6 +31,18 @@ function Component() {
   
   return <Sketch value={color} onChange={setColor} />;
 }
+```
+
+## Issues
+
+To use webpack 5 and React 17, you must include the alias in the webpack configuration.
+
+```js
+resolve: {
+  alias: {
+    'react/jsx-runtime': require.resolve('react/jsx-runtime'),
+  },
+},
 ```
 
 ### License

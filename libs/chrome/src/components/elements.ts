@@ -32,45 +32,35 @@ const SBPicker: ISliderElements = {
   },
 };
 
-const HueSlider: ISliderElements = {
-  container: {
-    style: {
-      height: 11,
-      borderRadius: 2,
-      background: DEFAULT_HUE_BACKGROUND,
+function slider(styles: CSSProperties) {
+  return {
+    container: {
+      style: {
+        height: 11,
+        borderRadius: 2,
+        ...styles,
+      },
     },
-  },
-  slider: {
-    style: {
-      height: 14,
-      width: 14,
-      borderRadius: '50%',
-      backgroundColor: '#fff',
-      boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px',
+    slider: {
+      style: {
+        height: 14,
+        width: 14,
+        borderRadius: '50%',
+        backgroundColor: '#fff',
+        boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px',
+      },
     },
-  },
-};
+  };
+}
 
-const AlphaSlider: ISliderElements = {
-  container: {
-    style: {
-      gridColumn: 2,
-      height: 11,
-      borderRadius: 2,
-      background: `linear-gradient(to right, transparent 0%, var(--hsl-color) 100%), url('${DEFAULT_SQUARED_BACKGROUND}') left center`,
-      marginTop: 8,
-    },
-  },
-  slider: {
-    style: {
-      height: 14,
-      width: 14,
-      borderRadius: '50%',
-      backgroundColor: '#fff',
-      boxShadow: 'rgba(0, 0, 0, 0.6) 0px 0px 2px',
-    },
-  },
-};
+const HueSlider: ISliderElements = slider({
+  background: DEFAULT_HUE_BACKGROUND,
+});
+
+const AlphaSlider: ISliderElements = slider({
+  background: `linear-gradient(to right, transparent 0%, var(--hsl-color) 100%), url('${DEFAULT_SQUARED_BACKGROUND}') left center`,
+  marginTop: 8,
+});
 
 const HexInput: IElement = {
   style: {
