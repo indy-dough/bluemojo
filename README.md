@@ -6,7 +6,7 @@ Bluemojo is a set of JavaScript libraries for using color pickers or building yo
 
 - Predefined pickers
 - Ability to create any custom picker
-- Separate package for converting color schemas
+- Separate package for [color utils](./libs/utils/README.md)
 - TypeScript support
 - No dependencies
 
